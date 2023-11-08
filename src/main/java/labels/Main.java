@@ -150,6 +150,16 @@ public class Main {
 	    						// TODO Auto-generated catch block
 	    						e.printStackTrace();
 	    					}
+						if(format.equalsIgnoreCase("excel"))
+	    					try {
+								
+	    						CreateHEADER c = new CreateHEADER(op, req, res);
+	    				        return c.result();
+								
+	    					} catch (Exception e) {
+	    						// TODO Auto-generated catch block
+	    						e.printStackTrace();
+	    					}
     				}
     				return "3rror";
     			});
