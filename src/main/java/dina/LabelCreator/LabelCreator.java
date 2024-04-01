@@ -148,23 +148,30 @@ public class LabelCreator {
 	}
 	
 	public String createHeaders(){
-		String line;
-		System.out.println("createHeader");
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(tmpPath));
-			while ((line = reader.readLine()) != null){}
-			reader.close();
-		}
-		catch(IOException e){
-			e.printStackTrace();
-			return null;
+		System.out.println("Excel Headers");
+		String file1 = new File(templateFile).getAbsolutePath();
+		File file = new File(
+            file1);
+		String content;
+		try{
+		BufferedReader br = new BufferedReader(new FileReader(templateFile));
+		String st;
+		
+		content = "";
+		while ((st = br.readLine()) != null)
+			content += st;
+		br.close();
+		}catch(Exception e){
+			content = "Error in reading file";
+			return content;
 		}
 
-		if (line != null){
-			return line;
-		}
+		System.out.println(content);
+		int start = content.indexOf("Excel-Header:") +13;
+		int end = content.indexOf("Excel-Header-End");
+		String headers = content.substring(start, end);
+		return headers;
 		
-		return "line was null from path: " + new File(templateFile).getAbsolutePath() + templateFile + tmpPath + tmpDir ;
 		
 	}
 	public void setData(String data) {
