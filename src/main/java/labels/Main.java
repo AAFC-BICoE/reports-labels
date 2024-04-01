@@ -25,9 +25,11 @@ import dina.TemplateCreator.TemplateCreator;
 import dina.api.SwaggerParser;
 import dina.api.requests.AccessStatic;
 import dina.api.requests.AccessTmp;
+import dina.api.requests.CreateHEADER;
 import dina.api.requests.CreateHTML;
 import dina.api.requests.CreatePDF;
 import dina.api.routes.AccessTmpRoute;
+import dina.api.routes.CreateHEADERRoute;
 import dina.api.routes.CreateHTMLRoute;
 import dina.api.routes.CreatePDFRoute;
 
@@ -144,7 +146,9 @@ public class Main {
 	    				 
 	    				if(format.equalsIgnoreCase("pdf"))
 	    					try {
+								System.out.println("createPDF");
 	    						CreatePDF c = new CreatePDF(op, req, res);
+								
 	    				        return c.result();
 	    					} catch (Exception e) {
 	    						// TODO Auto-generated catch block
@@ -152,8 +156,8 @@ public class Main {
 	    					}
 						if(format.equalsIgnoreCase("excel"))
 	    					try {
-								
 	    						CreateHEADER c = new CreateHEADER(op, req, res);
+								
 	    				        return c.result();
 								
 	    					} catch (Exception e) {
@@ -179,6 +183,13 @@ public class Main {
 		        
     			try {
 					CreateHTMLRoute.route(op);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				try {
+					CreateHEADERRoute.route(op);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -3,6 +3,10 @@
  */
 package dina.LabelCreator;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+//new dependencies
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -82,7 +86,7 @@ public class LabelCreator {
 	public void createPDF()
 	{
 		    String template = new String();
-            
+            System.out.println("createPDF");
             OutputStream os = null;
               try {
                os = new FileOutputStream(outputFile);
@@ -143,7 +147,26 @@ public class LabelCreator {
 		return twig;
 	}
 	
-	
+	public String createHeaders(){
+		String line;
+		System.out.println("createHeader");
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(tmpPath));
+			while ((line = reader.readLine()) != null){}
+			reader.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+			return null;
+		}
+
+		if (line != null){
+			return line;
+		}
+		
+		return "line was null from path: " + new File(templateFile).getAbsolutePath() + templateFile + tmpPath + tmpDir ;
+		
+	}
 	public void setData(String data) {
 		
 		if(data==null || data.isEmpty())
