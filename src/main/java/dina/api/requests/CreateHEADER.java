@@ -34,7 +34,7 @@ public class CreateHEADER{
 
            String re = labels.createHeaders();
            
-		   return "This was a success \n" + " Or not? " + re;
+		   return re;
 	}
 	
 	public List<String> getCleanUp(){
